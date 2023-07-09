@@ -1,0 +1,448 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+\lhead{Функциональный анализ-\RN{1}}
+\chead{Шейпак И.А.}
+\rhead{Лекция - 1}
+
+\section*{Введение}
+\textbf{План $1$-го полугодия}
+\begin{enumerate}[label=\arabic*)]
+	\item Метрические и нормированные пространства;
+	\item Банаховы пространства и геометрия в них;
+	\item Гильбертовы пространства и геометрия в них;
+	\item Линейные непрерывные функционалы и операторы в банаховых и гильбертовых пространствах;
+	\item Спектральная теория;
+	\item Теория Фредгольма;
+\end{enumerate}
+
+\section*{Метрические и нормированные пространства}
+\subsection*{Метрические пространства}
+\begin{defn}
+	Пару $(X,\rho)$ будем называть \uwave{метрическим пространством}, где $X$ - произвольное множество, функция расстояния $\rho$ задается следующим образом:
+	$$
+		\rho \colon X\times X \to \MR^{+}_0 = [0; +\infty)
+	$$
+	называется \uwave{метрикой} и обладает свойствами, называемыми \uwave{аксиомами метрики}:
+	\begin{enumerate}[label=\arabic*)]
+		\item \textbf{\uline{Неотрицательность}}: $\forall x,y \in X, \, \rho(x,y) \geq 0 \colon \rho(x,y) = 0 \Leftrightarrow x = y$;
+		\item \textbf{\uline{Симметричность}}: $\forall x,y \in X, \, \rho(x,y) = \rho(y,x)$;
+		\item \textbf{\uline{Неравенство треугольника}}: $\forall x,y,z \in X, \, \rho(x,y) \leq \rho(x,z) + \rho(z,y)$;
+	\end{enumerate}
+\end{defn}
+
+\textbf{Примеры метрических пространств}:
+\begin{enumerate}[label=\arabic*)]
+	\item $x = (x_1,\dotsc,x_n) \in \MR^n, \, \forall i, \, x_i\in \MR$ с метрикой:
+	$$
+		\rho(x,y) = \sqrt{\ddsum{i = 1}{n}|x_i - y_i|^2}
+	$$ 
+	\item $C[a,b]$ - непрерывные на $[a,b]$ функции с метрикой:
+	$$
+		\rho(f,g) = \max\limits_{x \in [a,b]}|f(x) - g(x)|
+	$$
+	\item \uwave{Дискретное пространство}: $X$ - произвольное непустое множество с метрикой:
+	$$
+		\rho(x,y) = 
+		\begin{cases}
+			0, & x = y \\
+			1, & x \neq y
+		\end{cases}
+	$$
+\end{enumerate}
+\newpage
+\subsection*{Сходимость в $(X,\rho)$}
+\begin{defn}
+	Последовательность $\{x_n\}_{n = 1}^{\infty}\subset X$ \uwave{сходится} к $x$: $x_n \to x$, если $\rho(x_n,x) \xrightarrow[n \to \infty]{} 0$.
+\end{defn}
+\begin{defn}
+	Последовательность $\{x_n\}_{n = 1}^{\infty}\subset X$ называется \uwave{фундаментальной}, если:
+	$$
+		\forall \VE > 0, \, \exists \, N = N(\VE) \colon \forall n,m\geq N, \, \rho(x_n, x_m) < \VE
+	$$
+\end{defn}
+\begin{defn}
+	Метрическое пространство $(X,\rho)$ называется \uwave{полным}, если $\forall \{x_n\}_{n = 1}^{\infty}\subset X$ - фундаментальная:
+	$$
+		\exists \lim\limits_{n\to\infty}x_n = x \in X
+	$$
+\end{defn}
+Полные пространства хороши тем, что если мы делаем предельный переход в нем, то нам не нужно заботиться о том, что предельный элемент обладает теми же свойствами, что и элементы $x_n$. 
+
+Например, пространство непрерывных функций - полное $\Rightarrow$ если делаем предельный переход по метрике на этом пространстве (равномерный предел непрерывных функций это непрерывная функция), то получим непрерывную функцию.
+
+Можно рассматривать пространство интегрируемых функций, они тоже полны $\Rightarrow$ предельный переход даст интегрируемую функцию.
+
+\textbf{Примеры метрических пространств}:
+\begin{enumerate}[label=\arabic*)]
+	\item $(\MR^n,\rho)$ - полное;
+	\item $(C[a,b],\rho)$ - полное;
+	\item Дискретное пространство - полное;
+	\item $\MQ$ - пространство рациональных чисел с метрикой $\rho(x,y) = |x - y|$ - не является полным. Можно взять: $\sqrt{2} \not\in \MQ$, а в качестве $x_n$ возьмем последовательность цифр, которая приближается к $\sqrt{2}$:
+	$$
+		x_n = 1,\underbrace{4\dotsc\dotsc}_{n} \xrightarrow[n \to \infty]{}x = x\sqrt{2}
+	$$
+	Эта последовательность фундаментальна в $\MR$, но её предел $\not\in \MQ$;
+	\item Пространство \uwave{финитных последовательностей}: $c_{00}\colon x = (x_1,x_2, \dotsc, x_n, 0, 0 , \dotsc) \in c_{00}$:
+	$$
+		\forall x \in c_{00}, \, \exists \, N = n(x) \colon \forall k > n, \, x_k = 0
+	$$
+	Это пространство не полно, рассмотрим последовательность:
+	$$
+		x^k = \left(1,\tfrac{1}{2}, \dotsc, \tfrac{1}{k}, 0 , \dotsc \right) \in c_{00}
+	$$
+	Она фундаментальна и после $k$-го номера первые $k$ координат заведомо не меняются $\Rightarrow$ предельная последовательность не будет финитной (все координаты будут ненулевыми);
+\end{enumerate}
+\newpage
+\subsection*{Геометрические понятия в метрических пространствах}
+\begin{defn}
+	\uwave{Открытым шаром} $\MB(x_0,r)$ в метрическом пространстве $(X,\rho)$ с центром в точке $x_0$ радиуса $r$ называется множество:
+	$$
+		\MB(x_0,r) \coloneqq\{x \in X \colon \rho(x,x_0) < r\}
+	$$
+\end{defn}
+\begin{defn}
+	\uwave{Замкнутым шаром} $\ovl{\MB(x_0,r)} = \MB[x_0,r]$ в метрическом пространстве $(X,\rho)$ с центром в точке $x_0$ радиуса $r$ называется множество:
+	$$
+		\MB[x_0,r] \coloneqq\{x \in X \colon \rho(x,x_0) \leq r\}
+	$$
+\end{defn}
+Пусть $M$ - множество в метрическом пространстве $(X,\rho)$: $M\subset (X,\rho)$.
+\begin{defn}
+	Точка $x_0$ является \uwave{предельной точкой} множества $M$, если: 
+	$$
+		\forall \VE > 0, \, \MB(x_0,\VE) \cap M
+	$$ 
+	содержит бесконечно много точек.
+\end{defn}
+\begin{corollary}
+	Точка $x_0$ - предельная точка для $M \Leftrightarrow \exists \, \{x_n\}_{n = 1}^{\infty}, \, x_n \in M$ и $x_n \xrightarrow{\rho}x_0$.
+\end{corollary}
+\begin{proof}\hfill\\
+	$(\Leftarrow)$ $\forall \VE > 0, \, \exists \, N = N(\VE) \in \MN \colon \forall n \geq N, \, \rho(x_n,x_0) < \VE \Rightarrow x_n \in \MB(x_0,\VE)$, видно что этих элементов бесконечное число в силу $\forall n \geq N$.
+	
+	$(\Rightarrow)$ $\forall n \in \MN, \, \MB\left(x_0,\tfrac{1}{n}\right)\cap M$ содержит бесконечно много точек, тогда:
+	$$
+		\forall n, \, \exists \, x_n \in \MB\left(x_0, \tfrac{1}{n}\right)\cap M \Rightarrow x_n \in M
+	$$ 
+	Поскольку их бесконечно много, то мы можем выбирать их разными, то есть, чтобы $x_n \neq x_1,x_2, \dotsc, x_{n-1}$. В итоге, мы построили последовательность: $x_n \to x_0$, где $\forall n, \, x_n \in M$. 
+\end{proof}
+
+\begin{defn}
+	Точка $x_0$ называется \uwave{точкой прикосновения} множества $M \subset (X,\rho)$, если:
+	$$
+		\forall \VE > 0, \, \MB(x_0,\VE) \cap M \neq \VN
+	$$
+\end{defn}
+\begin{defn}
+	Точка $x_0$ называется \uwave{изолированной точкой} множества $M \subset (X,\rho)$, если:
+	$$
+		\exists\, \VE > 0 \colon \MB(x_0,\VE) \cap M =\{x_0\}
+	$$
+\end{defn}
+\begin{corollary}
+	Если $x_0$ - предельная точка, то $x_0$ - это точка прикосновения. Обратно, вообще говоря, не верно.
+\end{corollary}
+\begin{proof}
+	Если $x_0$ - предельная точка, то по определению $\forall \VE > 0, \, \MB(x_0,\VE) \cap M \neq \VN$, поскольку содержит бесконечно много точек $\Rightarrow$ точка прикосновения.
+	
+	Обратно, может быть не верно, когда $\exists\, \VE > 0, \,\MB(x_0,\VE) \cap M \neq \VN$, но при этом такое пересечение содержит конечное число точек, то есть $x_0$ - точка прикосновения, но не предельная:
+	$$
+		\exists \, \VE > 0,\, \MB(x_0,\VE) \cap M \neq \VN, \, \MB(x_0,\VE) \cap M = \{x_1,x_2,\dotsc,x_m\}
+	$$
+	Более того, если мы возьмем: $0 < \hat{\VE} \leq \min\limits_{1 \leq i \leq m}\rho(x_0,x_i)$, то $\MB(x_0,\VE) \cap M = \{x_0\}$ - \uwave{изолированная точка}.
+\end{proof}
+
+\begin{defn}
+	\uwave{Замыканием множества} $M \subset (X,\rho)$ называется объединение множества $M$ со всеми его предельными точками:
+	$$
+		\ovl{M} \coloneqq M\cup \{\text{все предельные точки } M\}
+	$$
+\end{defn}
+\begin{exrc}
+	Для любого множества $M\subset (X,\rho)$, его замыкание $\ovl{M} \equiv$ все точки прикосновения $M$. 
+\end{exrc}
+\begin{proof}\hfill\\
+	$(\Rightarrow)$ Пусть $x \in \ovl{M}$ - предельная точка $M$, тогда по следствию выше $x$ - точка прикосновения $M$. Если $x \in M$ - не является предельной, то $\exists \, \VE > 0 \colon \MB(x,\VE) \cap M$ - содержит конечное число точек $\Rightarrow x$ это изолированная точка $\Rightarrow$ точка прикосновения $M$.
+	
+	$(\Leftarrow)$ Пусть $x \in \ovl{M}$ - точка прикосновения $M \Rightarrow \forall \VE > 0, \, \MB(x,\VE)\cap M \neq\VN$. Пусть $x \in M$ тогда:
+	$$
+		x \in M \Rightarrow x \in \MB(x,\VE) \Rightarrow x \in \MB(x,\VE)\cap M \neq \VN
+	$$
+	Пусть $x \not\in M$, тогда $x$ может быть только предельной точкой. Пусть это не так, тогда:
+	$$
+		\exists \, \VE > 0 \colon \MB(x,\VE) \cap M = \{x_1,x_2,\dotsc,x_m\} \Rightarrow \exists \, 0 < \hat{\VE} \leq \min\limits_{1 \leq i \leq m}\rho(x_0,x_i) \colon \MB(x,\hat{\VE}) \cap M = \VN
+	$$
+	Получили противоречие, поскольку $ \forall \VE > 0, \, \MB(x,\VE)\cap M \neq\VN$.
+\end{proof}
+\begin{defn}
+	Множество $M \subset (X,\rho)$ называется \uwave{открытым}, если: 
+	$$
+		\forall x \in M, \, \exists\, \VE > 0 \colon \MB(x,\VE) \subset M
+	$$ 
+	то есть каждая точка содержится вместе с некоторым шаром.
+\end{defn}
+\begin{defn}
+	Множество $M \subset (X,\rho)$ называется \uwave{замкнутым}, если его дополнение $X \setminus M$ - открыто.
+\end{defn}
+
+\begin{exrc}\textbf{\uline{Свойства открытых множеств}}:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\MB(x_0, r)$ - открытое множество;
+		\item $\MB[x_0,r]$ - замкнутое множество;
+		\item $\ovl{M}$ - замкнутое множество;
+		\item $\ovl{\ovl{M}} = \ovl{M}$ - замкнутое множество содержит все свои предельные точки;
+	\end{enumerate}
+\end{exrc}
+\begin{proof}\hfill
+	\begin{enumerate}[label=\arabic*)]
+		\item Уже доказывали в математическом анализе. По определению:
+		$$
+			\MB(x_0,r) = \{x \in X \colon \rho(x,x_0) < r\} \Rightarrow \forall x \in \MB(x_0,r), \, \exists \, \VE = r - \rho(x,x_0) \Rightarrow \MB(x,\VE) \subset \MB(x_0,r)
+		$$
+		$$
+			\forall y \in \MB(x,\VE), \, \rho(x_0,y) \leq \rho(x_0, x) + \rho(x,y) < \rho(x_0,x) + \VE = \rho(x_0,x) + r - \rho(x_0,x) = r
+		$$
+		\item Пусть $x \in X\setminus\MB[x_0,r]$, тогда по определению $\rho(x,x_0) > r$. Пусть $\VE = \rho(x,x_0) - r > 0$, тогда:
+		$$
+			\forall y \in \MB(x,\VE), \, \rho(x_0,x) \leq \rho(x_0,y) + \rho(y,x) < \rho(x_0,y) + \VE = \rho(x_0,y) + \rho(x_0,x) - r \Rightarrow
+		$$
+		$$
+			\Rightarrow \rho(x_0, y) > r \Rightarrow y \in X \setminus \MB[x_0,r] \Rightarrow \MB(x,\VE)\subset X\setminus \MB[x_0,r]
+		$$
+		\item По определению, $\ovl{M}$ содержит $M$ и все предельные точки $M$, тогда: 
+		$$
+			\forall x \in X\setminus \ovl{M}, \, \exists \, \VE > 0 \colon \MB(x,\VE) \cap M = \VN  
+		$$ 
+		Покажем, что из этого следует: $\MB(x,\VE) \cap \ovl{M} = \VN$. Пусть $\exists \, y \in \MB(x,\VE) \colon y \in \MB(x,\VE) \cap \ovl{M}$. Поскольку $y \not\in M$, то $y$ - предельная точка $M$. Пусть $\VE_1 = \VE - \rho(x,y)$, тогда:
+		$$
+			\forall z \in \MB(y,\VE_1), \, \rho(z,x) \leq \rho(z,y) + \rho(y,x) < \VE_1 + (\VE - \VE_1) = \VE \Rightarrow \MB(y,\VE_1) \subset \MB(x,\VE)
+		$$
+		Но $\MB(x,\VE) \cap M = \VN \Rightarrow y$ не может быть предельной точкой $M \Rightarrow$ противоречие. Тогда:
+		$$
+			\exists \, \VE > 0 \colon \MB(x,\VE) \cap M = \VN  \Rightarrow \MB(x,\VE) \cap \ovl{M} = \VN \Rightarrow \MB(x,\VE) \subset X \setminus \ovl{M}
+		$$
+		\item В одну сторону это очевидно, поскольку $x \in \ovl{M} \Rightarrow x \in \ovl{\ovl{M}}$. Пусть $x \in \ovl{\ovl{M}}$, тогда:
+		$$
+			\forall \VE > 0, \, \MB(x,\VE) \cap \ovl{M} \neq \VN \Rightarrow \exists \, y \in \MB(x,\VE) \cap \ovl{M}, \, y \in \ovl{M} 
+		$$
+		Рассмотрим шар вокруг точки $y \in \ovl{M}$, пусть $\VE - \rho(x,y) = \VE_1$, тогда:
+		$$
+			 \forall z \in \MB(y,\VE_1), \, \rho(z,y) < \VE_1 \Rightarrow \rho(z,x) \leq \rho(z,y) + \rho(y,x) < \VE_1 + (\VE - \VE_1) = \VE \Rightarrow \MB(y,\VE_1) \subset \MB(x,\VE)
+		$$
+		$$
+			y \in \ovl{M} \Rightarrow \exists \, y' \in \MB(y,\VE_1) \colon y' \in M \Rightarrow y' \in \MB(x,\VE)
+		$$ 
+		В силу произвольности $\MB(x,\VE)$ верно, что $x \in \ovl{M}$.
+	\end{enumerate}
+\end{proof}
+
+\subsection*{Свойства полных метрических пространств}
+\end{document}
